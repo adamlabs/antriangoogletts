@@ -59,19 +59,20 @@
                 <center><h1>ANTRIAN NOMOR</h1></center>
                 <div class="row">
                         <div class="col-sm-4">
-                                <button type="button" class="balik btleft btn btn-lg btn-success">Balik</button>
+                                <button type="button" class="balik btleft btn btn-lg btn-danger">Balik</button>
                         </div>
                         <div class="col-sm-4">
                                 <h1 class="mytxsize text-center shadow"><p class="noh "><b>0</b></p></h1>
                         </div>
                         <div class="col-sm-4">
-                                <button type="button" class="lanjut btright btn btn-lg btn-success">Lanjut</button>
+                                <button type="button" class="lanjut btright btn btn-lg btn-danger">Lanjut</button>
                         </div>
                       </div>
                 
                       <center>   
                 <label for="nomer">Nomer:</label>
                 <input type="number" name="nomer" id="nomer" value="0"/>
+				<button type="button" class="play  btn btn-warning">Play</button>
                 </center>
 
                 <center>
@@ -104,6 +105,20 @@
             $('.noh').html("<b>" +kode+ nomer + "</b>");
             $('#nomer').val(nomer);
             url = "https://translate.google.com.vn/translate_tts?ie=UTF-8&q=antrian%20nomor%20"+ kode + "," + nomer + "%20,silahkan%20ke" + lokasi +"&tl=id&client=tw-ob";
+            $('audio').attr('src', url);
+        });
+
+		$('.play').click(function(){
+            var nomer = $('#nomer').val();
+            var lokasi= $('#sel1 option:selected').text();
+            var kode  = $('#sel1').val();
+            lokasi    = encodeURI(lokasi);
+            if(nomer < 1){
+                nomer = 1;
+            }
+            $('.noh').html("<b>" +kode+ nomer + "</b>");
+            $('#nomer').val(nomer);
+            url = "https://translate.google.com.vn/translate_tts?ie=UTF-8&q=antrian%20nomor%20"+ kode +  "," + nomer + "%20,silahkan%20ke" + lokasi +"&tl=id&client=tw-ob";
             $('audio').attr('src', url);
         });
 
